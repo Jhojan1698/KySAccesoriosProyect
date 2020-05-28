@@ -3,29 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Configuracion;
+package Conexiones;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.*;
 
-/**
- *
- * @author Segundo
- */
 public class Conexion {
-    Connection con;
-    String url="jdbc:mysql://localhost:3306/KyS";
-    String usuario="root";
-    String contraseña="jhojan1698";
+    
     public Connection getConnection(){
+        Connection cn = null;
+        
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con=DriverManager.getConnection(url,usuario,contraseña);
+            cn = DriverManager.getConnection("jdbc:mysql://localhost/bdcarrito?autoReconnect=true&useSSL=false","root","jhojan1698");
+            System.out.print("Conexion satisfacoria");
         } catch (Exception e) {
+            System.out.print("Error de conexion: "+e); 
         }
-        
-        return con;
-}
-
+        return cn;
+    }
     
 }
